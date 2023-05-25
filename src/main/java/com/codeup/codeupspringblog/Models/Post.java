@@ -1,4 +1,4 @@
-package com.codeup.codeupspringblog.repositories;
+package com.codeup.codeupspringblog.Models;
 
 public class Post {
     private int id;
