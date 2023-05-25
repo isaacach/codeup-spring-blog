@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Dice guess</title>
+</head>
+<body>
+    <nav th:replace="partials :: navbar" />
+    <h1>Guess the number of the dice roll</h1>
+    <h2>
+        <a href="/roll-dice/1">1</a>
+        <a href="/roll-dice/2">2</a>
+        <a href="/roll-dice/3">3</a>
+        <a href="/roll-dice/4">4</a>
+        <a href="/roll-dice/5">5</a>
+        <a href="/roll-dice/6">6</a>
+    </h2>
+    <nav th:replace="partials :: footer" />
+</body>
+</html>

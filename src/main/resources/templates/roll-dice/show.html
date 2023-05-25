@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <nav th:replace="partials :: navbar" />
+    <div th:each="roll : ${rolls}">
+        <h1>User guessed <span th:text="${number}"></span>. The die landed on <span th:text="${roll}"></span>.</h1>
+        <h1 th:if="${number != roll}">You lose</h1>
+        <h1 th:if="${number == roll}">You win</h1>
+    </div>
+    <nav th:replace="partials :: footer" />
+</div>
+</body>
+</html>
