@@ -22,8 +22,10 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String onePost(@PathVariable int id, Model model) {
-        return "/posts/index";
+    public String onePost(@PathVariable long id, Model model) {
+        Post post = postDao.findById(id);
+        model.addAttribute("post", post);
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")

@@ -9,6 +9,7 @@
     <div th:each="post : ${posts}">
         <h2>Title: <span th:text="${post.title}"></span></h2>
         <h2>Body: <span th:text="${post.body}"></span></h2>
+        <a th:href="@{|/posts/${post.id}|}"><button>See Post</button></a>
     </div>
 </body>
 </html>

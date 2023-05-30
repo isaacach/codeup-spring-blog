@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show a Post</title>
 </head>
 <body>
- <h3>Title: <span th:text="${post.getTitle()}"></span></h3>
- <h3>Body: <span th:text="${post.getBody()}"></span></h3>
+ <h3>Title: <span th:text="${post.title}"></span></h3>
+ <h3>Body: <span th:text="${post.body}"></span></h3>
 
- <div th:each="post : ${posts}">
-     <h3>Title: <span th:text="${post.getTitle()}"></span></h3>
-     <h3>Body: <span th:text="${post.getBody()}"></span></h3>
- </div>
 </body>
 </html>
