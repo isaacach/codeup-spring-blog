@@ -6,9 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class PostController {
 
@@ -26,7 +23,6 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String onePost(@PathVariable int id, Model model) {
-
         return "/posts/index";
     }
 
@@ -39,7 +35,18 @@ public class PostController {
     public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
         Post post = new Post(title, body);
         postDao.save(post);
-        return "redirect:  /index";
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/search")
+    public String searchPosts() {
+        return "posts/search";
+    }
+
+    @PostMapping("/posts/search")
+    public String searchResults(@RequestParam(name="title") String title, Model model) {
+        model.addAttribute("results", postDao.findByTitle(title));
+        return "posts/search";
     }
 
 }
