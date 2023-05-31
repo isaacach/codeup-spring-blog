@@ -5,8 +5,10 @@
     <title>Show a Post</title>
 </head>
 <body>
- <h3>Title: <span th:text="${post.title}"></span></h3>
- <h3>Body: <span th:text="${post.body}"></span></h3>
+
+     <h2>Title: <span th:text="${post.title}"></span></h2>
+     <h3>Body: <span th:text="${post.body}"></span></h3>
+     <h4>Body: <span th:text="${post.getUser().getEmail()}"></span></h4>
 
 </body>
 </html>
