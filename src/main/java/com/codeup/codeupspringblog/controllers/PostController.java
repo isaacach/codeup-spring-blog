@@ -1,7 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Comment;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.CommentRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,12 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final CommentRepository commentDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.commentDao = commentDao;
     }
 
     public User randomUser(UserRepository userDao) {
@@ -62,6 +66,14 @@ public class PostController {
     public String searchResults(@RequestParam(name="title") String title, Model model) {
         model.addAttribute("results", postDao.findByTitle(title));
         return "posts/search";
+    }
+
+    @PostMapping("/posts/comment")
+    public String submitComment(@RequestParam(name = "content") String content, @RequestParam(name = "postId") long postId) {
+        Post post = postDao.findById(postId);
+        Comment comment = new Comment(content, post);
+        commentDao.save(comment);
+        return "redirect:/posts";
     }
 
 }

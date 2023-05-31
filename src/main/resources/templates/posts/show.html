@@ -8,7 +8,14 @@
 
      <h2>Title: <span th:text="${post.title}"></span></h2>
      <h3>Body: <span th:text="${post.body}"></span></h3>
-     <h4>Body: <span th:text="${post.getUser().getEmail()}"></span></h4>
+     <h4>User Email: <span th:text="${post.getUser().getEmail()}"></span></h4>
+
+    <form action="/posts/comment" method="post">
+        <label for="content">Comment:</label>
+        <textarea name="content" id="content" cols="50" rows="10"></textarea>
+        <input type="hidden" name="postId" th:value="${post.id}">
+        <input type="submit">
+    </form>
 
 </body>
 </html>

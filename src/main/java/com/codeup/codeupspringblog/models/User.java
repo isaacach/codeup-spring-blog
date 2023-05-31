@@ -24,6 +24,9 @@ public class User {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
 
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Comment> comments;
+
     public User(long id, String username, String email, String password) {
         this.id = id;
         this.username = username;
