@@ -10,6 +10,7 @@
         <h2>Title: <span th:text="${post.title}"></span></h2>
         <h3>Body: <span th:text="${post.body}"></span></h3>
         <a th:href="@{|/posts/${post.id}|}"><button>See Post</button></a>
+        <a th:href="@{|/posts/${post.id}/edit|}" th:value="${post}"><button>Edit Post</button></a>
         <div th:if="${post.comments.size() > 0}">
             <h3>Comments:</h3>
             <div th:each="comment : ${post.comments}">

@@ -13,14 +13,21 @@
     </style>
 </head>
 <body>
-
-<h1>Create a Post</h1>
-  <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-    <h2>Title</h2>
-    <input th:field="*{title}">
-    <h2>Body</h2>
-    <textarea th:field="*{body}"></textarea>
-    <input type="submit">
+    <h1 th:if="${post.id == 0}">Create a Post</h1>
+    <h1 th:if="${post.id != 0}">Editing post #[[${post.id}]]</h1>
+    <form th:if="${post.id == 0}" th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        <h2>Title</h2>
+        <input th:field="*{title}" th:value="*{title}">
+        <h2>Body</h2>
+        <textarea th:field="*{body}" th:value="*{body}"></textarea>
+        <input type="submit">
+    </form>
+    <form th:if="${post.id != 0}" th:action="@{/posts/${post.id}/edit}" th:method="post" th:object="${post}">
+        <h2>Title</h2>
+        <input th:field="*{title}" th:value="*{title}">
+        <h2>Body</h2>
+        <textarea th:field="*{body}" th:value="*{body}"></textarea>
+        <input type="submit">
   </form>
 
 </body>

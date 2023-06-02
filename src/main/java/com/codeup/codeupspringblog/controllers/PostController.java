@@ -6,6 +6,7 @@ import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.CommentRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +20,13 @@ public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
     private final CommentRepository commentDao;
+    private EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.commentDao = commentDao;
+        this.emailService = emailService;
     }
 
     public User randomUser(UserRepository userDao) {
@@ -55,6 +58,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post) {
         post.setUser(randomUser(userDao));
         postDao.save(post);
+        emailService.prepareAndSend(post, "New Post Created", "Your new post has been posted", "isaac.achenbach1@gmail.com");
         return "redirect:/posts";
     }
 
@@ -76,5 +80,21 @@ public class PostController {
         commentDao.save(comment);
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editForm(@PathVariable long id, Model model) {
+        Post post = postDao.findById(id);
+        model.addAttribute("post", post);
+        return "redirect:/posts/create";
+    }
+
+    @PostMapping(path="/posts/{id}/edit\"")
+    public String submitEdit(@ModelAttribute Post post) {
+        post.setUser(randomUser(userDao));
+        postDao.save(post);
+        return "redirect:/posts";
+    }
+
+
 
 }
