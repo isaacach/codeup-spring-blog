@@ -95,6 +95,11 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/restposts")
+    public List<Post> getRestPosts() {
+        return postDao.findAll();
+    }
+
 
 
 }

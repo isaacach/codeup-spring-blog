@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>Profile</h1>
+<h2>Welcome, <span sec:authentication="principal.username"></span></h2>
+<form th:action="@{/profile}" th:method="post">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" th:value="${user.email}">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

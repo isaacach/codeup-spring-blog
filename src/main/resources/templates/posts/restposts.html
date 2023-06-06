@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+const getPosts = async () => {
+    const response = await fetch("posts/restposts");
+    return response.json();
+}
+</script>
+</body>
+</html>

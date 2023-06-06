@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
@@ -9,9 +9,8 @@
     <h2>Navbar</h2>
   </nav>
 
-  <head th:fragment="head">
-    <h2>Header</h2>
-    <title>Title</title>
+  <head th:fragment="head (title)">
+    <title th:text="title">Title</title>
   </head>
 
   <footer th:fragment="footer">

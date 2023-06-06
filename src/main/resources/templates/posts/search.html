@@ -7,7 +7,7 @@
 <body>
 
     <h1>Search Post by Title</h1>
-    <form action="/posts/search" method="post">
+    <form th:action="@{/posts/search}" th:method="post">
         <input id="searchPost" name="title" />
         <input type="submit"/>
     </form>
